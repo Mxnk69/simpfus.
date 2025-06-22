@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=SUSE:wght@100..800&display=swap"
+    rel="stylesheet">
+  <title>Husbando list</title>
+  <style>
+    .sidebar {
+      height: 100%;
+      /* Full-height */
+      width: 250px;
+      /* Sidebar width */
+      position: fixed;
+      /* Fixed sidebar */
+      top: 0;
+      left: 0;
+      background-color: #111;
+      /* Background color */
+      padding-top: 20px;
+      color: white;
+    }
+
+    .sidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+      /* Darker background on hover */
+    }
+
+    .content {
+      margin-left: 260px;
+      /* Same width as the sidebar */
+      padding: 20px;
+    }
+
+    .sidebar {
+      height: 100%;
+      /* Full-height */
+      width: 250px;
+      /* Sidebar width */
+      position: fixed;
+      /* Fixed sidebar */
+      top: 0;
+      left: -250px;
+      /* Hide sidebar initially */
+      background-color: #111;
+      /* Background color */
+      padding-top: 20px;
+      color: white;
+      transition: left 0.3s;
+      /* Smooth slide-in effect */
+    }
+
+    .sidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+      /* Darker background on hover */
+    }
+
+    .menu-btn {
+      font-size: 30px;
+      background-color: rgba(20, 20, 20, 0);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    .content {
+      margin-left: 20px;
+      /* Space for the menu button */
+      padding: 20px;
+      transition: margin-left 0.3s;
+      /* Smooth content shift */
+    }
+
+    .content.expanded {
+      margin-left: 260px;
+      /* Same width as the sidebar */
+    }
+
+    .menu-btn.hidden {
+      display: none;
+      /* Hide the button */
+    }
+
+    .content.expanded {
+      margin-left: 250px;
+      /* Same width as the sidebar */
+    }
+
+    * {
+      font-family: "SUSE", sans-serif;
+    }
+
+    body {
+      background-color: #0a0d13;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #2b2b2b;
+      border-radius: 10px;
+    }
+
+    .left {
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .left img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .right {
+      flex: 2;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .right .details {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .details div {
+      width: 45%;
+      margin-bottom: 10px;
+    }
+
+    .details div p {
+      margin: 5px 0;
+    }
+
+    .description {
+      margin-top: 20px;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+    }
+
+    .description h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .description p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .popularity {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .popularity div {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .popularity div span {
+      margin-left: 5px;
+    }
+
+    .likes {
+      color: #ff69b4;
+    }
+
+    .trash {
+      color: #999;
+    }
+
+    .appears-in a {
+      color: #00aaff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 3px 3px;
+      font-size: 40px;
+      color: #fff;
+      background-color: #7d78ee;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Husbando List</h1>
+  <div class="container">
+    <div class="left">
+      <img src="gojocard.jpg" alt="Megumin">
+      <a href="https://character.ai/chat/4WOVrCApi4JYwfYwU2e5eDeFalLOkGBw6IfUZPX1XVQ" class="button">Click to
+        chat
+        with Gojo!</a>
+    </div>
+    <div class="right">
+      <h2>Satoru Gojo</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> 五条 悟</p>
+          <p><strong>Romaji Name:</strong> Satoru Gojo</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 28</p>
+          <p><strong>Date of Birth:</strong> December 7</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Jujutsu Kaisen</p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Gojo is easily recognizable by his tall, athletic build, white hair, and striking blue eyes, which are often
+          covered by a blindfold or dark sunglasses due to his powerful Six Eyes technique. His usual attire is a
+          high-collar black jacket and pants, emphasizing his sleek, confident style.
+
+          <br>
+          Satoru Gojo is confident, eccentric, and often playful. Despite his power, he has a laid-back and friendly
+          demeanor with his students, although he can be blunt and even arrogant with enemies and fellow jujutsu
+          sorcerers. He cares deeply for his students and has a strong belief in protecting the younger generation of
+          sorcerers. Although he doesn’t take many things seriously, Gojo has a clear sense of justice and is fiercely
+          determined to change the corrupt structures of the Jujutsu world.<br>
+          Gojo hails from the prestigious Gojo family, a powerful lineage known for producing strong jujutsu sorcerers.
+          As the first person in centuries to inherit both the Six Eyes and Limitless technique, he was recognized as a
+          prodigy from a young age. His upbringing in the elite sorcerer world gave him a unique perspective on the
+          jujutsu hierarchy, and he now seeks to reform this system, prioritizing protecting students and the next
+          generation of sorcerers over established traditions.<br>Gojo plays a crucial role in Jujutsu Kaisen as both a
+          mentor and protector. He serves as a teacher at Tokyo Jujutsu High and trains his students, especially Yuji
+          Itadori, Megumi Fushiguro, and Nobara Kugisaki, to become stronger sorcerers. His goal is to reshape the
+          sorcery world, aiming to make it safer and less restrictive. Gojo's charisma, unmatched power, and dedication
+          to his ideals make him a standout character and a fan favorite in Jujutsu Kaisen.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="left">
+      <img src="kiyotakacard.png" alt="Megumin">
+      <a href="https://character.ai/chat/ZSyfWED6irk_zxpgKdwV1-T5xT6E0uTZDPn59x18vVc" class="button">Click to chat
+        with ayanokoji!</a>
+    </div>
+    <div class="right">
+      <h2></h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> 綾小路 清隆</p>
+          <p><strong>Romaji Name:</strong> Kiyotaka Ayanokoji</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 16</p>
+          <p><strong>Date of Birth:</strong> October 20</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Classroom Of The Elite </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Kiyotaka has a slender yet athletic build, with short, slightly disheveled brown hair and calm, brown eyes.
+          He generally wears the standard school uniform, and his expressions often remain neutral, making him seem
+          unapproachable or aloof.<br>
+          Kiyotaka is highly reserved, observant, and strategic, often maintaining a low profile to avoid attracting
+          unnecessary attention. He avoids forming close bonds with others, preferring a calm, emotionless demeanor that
+          makes him seem indifferent. However, beneath this exterior lies a cunning and analytical mind, and Kiyotaka is
+          willing to manipulate situations to achieve his goals. He possesses a deep understanding of psychology and
+          human behavior, which he uses to navigate the challenges he faces in school.<br>Kiyotaka grew up in the White
+          Room, a highly secretive and intense training facility designed to create exceptional individuals by isolating
+          them from normal emotional experiences. This upbringing left him emotionally detached and highly suspicious of
+          others’ intentions. His father, the founder of the White Room, wanted Kiyotaka to embody perfection, but
+          Kiyotaka eventually distanced himself from this expectation. When he entered Advanced Nurturing High School,
+          he intended to live a quiet, low-profile life, free from his father’s influence, but the school’s highly
+          competitive structure soon pulled him into complex social dynamics.<br>Kiyotaka is initially placed in Class
+          1-D, the lowest-ranked class, but he begins subtly influencing events around him to elevate the class’s
+          status. His strategic mind and influence become increasingly crucial as his classmates compete to reach the
+          top. He works from behind the scenes to help his class without revealing his true potential, developing
+          complex relationships with classmates like Suzune Horikita and Kei Karuizawa. His journey in the series
+          reveals his internal struggles, his detachment from ordinary life, and his efforts to balance his hidden
+          talents with his desire for normalcy.<br></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="left">
+      <img src="grimjowcard.jpg" alt="Megumin">
+      <a href="https://character.ai/chat/tlWjF2F_lbiKaBs2sxiHDVUGpjW6AeXrAwPgPOV7iTM" class="button">Click to chat
+        with Grimmjow!</a>
+    </div>
+    <div class="right">
+      <h2>Grimmjow</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> グリムジョー・ジャガージャック </p>
+          <p><strong>Romaji Name:</strong> Grimmjow Jaegerjaquez </p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 200+</p>
+          <p><strong>Date of Birth:</strong> Not given</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Bleach </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Grimmjow has a tall, lean build, with striking blue hair and fierce blue eyes. He has a Hollow fragment in
+          the form of a jawbone on his right cheek and a distinctive “6” tattoo on his back, denoting his rank among the
+          Espada. His attire usually consists of the standard white Espada uniform with a high collar and a distinct,
+          untamed style that reflects his wild personality.<br>
+          Grimmjow is known for his rebellious, aggressive, and proud nature. He has a deeply competitive streak and
+          craves battle, often seeking out powerful opponents. Despite his seemingly chaotic personality, he has a
+          strong sense of honor in combat and despises those who avoid direct confrontation. Grimmjow's disdain for
+          authority is clear as he frequently challenges orders from other Espada and Aizen himself. He holds a personal
+          rivalry with Ichigo Kurosaki and is determined to prove his strength.<br>
+          Nazuna meets the protagonist, Ko Yamori, who is struggling with insomnia and a sense of
+          purposelessness in his
+          Grimmjow was a Hollow who transformed into a powerful Adjuchas-class Menos. Originally leading a group of
+          Hollows in Hueco Mundo, he devoured his companions to grow stronger and ultimately achieved Arrancar form
+          through Aizen's intervention. His unyielding desire to fight and survive led him to accept Aizen's offer to
+          become an Espada, though he remains skeptical of authority and focuses on his own path to strength.<br>
+          Grimmjow plays a significant role in the Arrancar Arc, where he engages in multiple battles with Ichigo. His
+          rivalry with Ichigo drives him to pursue ever-stronger forms of power, leading to their intense, highly
+          memorable clashes. Despite his role as an antagonist, Grimmjow's code of honor and his straightforward,
+          unfiltered personality make him a complex character who gains respect even from his enemies. His dynamic and
+          ever-evolving rivalry with Ichigo is one of the highlights of Bleach, making him one of the series' most
+          iconic characters.<br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="container">
+    <div class="left">
+      <img src="ichigocard.webp" alt="Megumin">
+      <a href="https://character.ai/chat/-8iPtCe25E2ehu0vz_Y-k_IUa93ai3aZposAvooUBh4" class="button">Click to chat
+        with Ichigo!</a>
+    </div>
+    <div class="right">
+      <h2>Kurosaki Ichigo</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong>黒崎 一護</p>
+          <p><strong>Romaji Name:</strong> Kurosaki Ichigo</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 17 by the end of anime but 27 at the end of the novel</p>
+          <p><strong>Date of Birth:</strong> July 15</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Bleach </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Ichigo is a tall, muscular young man with orange hair and brown eyes, often seen wearing his high school
+          uniform or casual clothes. As a Soul Reaper, he wears the traditional black shihakushō robe, which later gains
+          a unique design in his evolved forms. His hair color makes him stand out, often leading to misunderstandings
+          and fights due to people assuming he’s a delinquent. <br>
+          Ichigo is serious, determined, and protective, with a strong sense of justice. He has a natural empathy for
+          others and is deeply loyal to his friends and family, going to great lengths to protect them. Despite his
+          often serious demeanor, he has a sarcastic, blunt sense of humor and often reacts with impatience or
+          irritation in confusing situations. Ichigo's inner strength comes from his desire to help others, and his
+          sense of duty propels him forward even when faced with overwhelming challenges.<br>
+          Ichigo grew up in Karakura Town with his father, Isshin, and his two younger sisters, Yuzu and Karin. His
+          mother, Masaki, was tragically killed by a Hollow when he was young, a trauma that motivated his desire to
+          protect his loved ones. After unexpectedly receiving Soul Reaper powers from Rukia Kuchiki, Ichigo began a
+          journey to understand his powers and role in the spirit world. Over time, he discovered his mixed heritage as
+          a Soul Reaper, Quincy, and Hollow, which contributes to his unique spiritual abilities.<br>
+          As the main protagonist, Ichigo's journey encompasses numerous arcs, from his initial role as a Substitute
+          Soul Reaper to his battles with Aizen, the Arrancar, the Fullbringers, and the Quincy army. His character
+          development is closely tied to his struggles with identity and power, and his relationships with allies like
+          Rukia, Orihime, and his other friends are central to his story. He confronts various challenges that push him
+          to grow stronger, making him both a protector and a bridge between the human and spirit worlds.<br></p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="left">
+      <img src="aizencardd.jpg" alt="Megumin">
+      <a href="https://character.ai/chat/Lc8aQdd1IqQMgwH5ZM_YZwq5CZt-lBci2v16uInwLog" class="button">Click to chat
+        with Aizen!</a>
+    </div>
+    <div class="right">
+      <h2>Aizen</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> 藍染 惣右介</p>
+          <p><strong>Romaji Name:</strong>Sosuke Aizen</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 200+</p>
+          <p><strong>Date of Birth:</strong> May 29</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Bleach </p>
+
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p>Aizen has a tall, slender build with refined, sharp features and brown hair that he initially wears slicked
+          back. His look changes after his betrayal, as he lets his hair down, adopting a more relaxed and confident
+          appearance. Known for his calm and composed demeanor, Aizen’s appearance reflects his carefully crafted,
+          outwardly polite persona that conceals his darker motives.<br>Aizen is intelligent, calm, and highly
+          manipulative, often staying several steps ahead of his opponents. He is confident to the point of arrogance,
+          believing in his vision and superiority over others, particularly the Soul Society. Aizen is also extremely
+          charismatic, inspiring loyalty and fear among his followers. His drive to attain power and control over fate,
+          particularly through his plans to surpass the Soul King, reflects his philosophical belief in transcending
+          limits and achieving godlike power.<br>He is meticulous in hiding his true motives, maintaining an image of a
+          kind and humble captain for centuries. However, his true personality is ruthless and cunning, willing to
+          sacrifice and manipulate others to achieve his goals.<br> Aizen began as a Captain in the Gotei 13, where he
+          served as the Captain of the 5th Division. For centuries, he acted as a kind and supportive leader, concealing
+          his true ambitions and experiments with the Hōgyoku. Behind the scenes, he meticulously planned to overthrow
+          the Soul Society, using Rukia Kuchiki, the Arrancar, and his fellow Soul Reapers to further his plans. His
+          ultimate goal was to overthrow the Soul King, seeing the spirit world's ruling system as flawed. <br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div class="left">
+      <img src="dazaicard.png" alt="Megumin">
+      <a href="https://character.ai/chat/QGUSt84fjF5nZKfccyeWh_gPcfETuI4EQS7C-0fiAJo" class="button">Click to chat
+        with Dazai!</a>
+    </div>
+    <div class="right">
+      <h2>Ellen Joe</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> 太宰 治</p>
+          <p><strong>Romaji Name:</strong> Osamu Dazai</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 22</p>
+          <p><strong>Date of Birth:</strong> June 19 </p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p>Bungou Stray Dogs </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Dazai is a tall, slender man with brown hair, usually seen with a faint smile or expression of mild
+          amusement. He typically wears a long beige trench coat over a blue suit and white shirt with a bolo tie, often
+          with a few bandages wrapped around his neck, arms, and sometimes his head. His disheveled yet refined
+          appearance reflects his eccentric and unpredictable personality.<br>Dazai is complex and multifaceted, known
+          for his cheerful, playful attitude that often conceals a more somber and calculating side. He has a dark sense
+          of humor and a penchant for dramatic behavior, often making lighthearted comments about morbid topics like
+          suicide. Despite this, he cares deeply for his friends and takes his role in the Armed Detective Agency
+          seriously. His past as a member of the Port Mafia has left him with a certain detachment, and he often uses
+          manipulation and psychological tactics to achieve his goals. Dazai is highly intelligent, quick to analyze
+          situations, and possesses a unique charm that allows him to gain the trust of others, even in morally
+          ambiguous situations.<br> Dazai’s past is shrouded in mystery, but it is known that he was a high-ranking
+          member of the Port Mafia before joining the Armed Detective Agency. During his time in the Mafia, he was
+          feared for his ruthlessness and cunning. His close relationship with Chuuya Nakahara and other members of the
+          Mafia adds to his complex past, as he was known for his strategic brilliance and significant influence within
+          the criminal organization. At some point, he began to question his purpose and moral beliefs, leading him to
+          leave the Mafia and join the Armed Detective Agency, where he began working for the greater good.<br> Dazai’s
+          blend of intelligence, humor, and tragedy, combined with his mysterious past and strong sense of purpose, make
+          him one of Bungou Stray Dogs' most captivating and complex characters. His character serves as a bridge
+          between the morally gray worlds of the Armed Detective Agency and the Port Mafia, embodying the series’
+          exploration of justice, redemption, and identity.<br> </p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div class="left">
+      <img src="byakuyacard.jpg" alt="Megumin">
+      <a href="https://character.ai/chat/iH1PLJI1HV08lT9TzpBQTYhYb3X9N3AA__p0DqaG1wQ" class="button">Click to chat
+        with Byakuya!</a>
+    </div>
+    <div class="right">
+      <h2>Kuchiki Byakuya</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> 朽木 白哉</p>
+          <p><strong>Romaji Name:</strong> Kuchiki Byakuya</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 100+</p>
+          <p><strong>Date of Birth:</strong>January 31 </p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Bleach</p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Byakuya is a tall, elegant man with pale skin and sharp, noble features. He has long black hair, which he
+          keeps styled in a traditional kenseikan, a white hairpiece worn by nobility, symbolizing his high status as
+          the head of the Kuchiki Clan. His attire typically consists of the standard Soul Reaper captain's uniform,
+          complemented by a white scarf called the Ginpaku Kazahana no Uzuginu, a family heirloom symbolizing his noble
+          heritage.<br>Byakuya is calm, stoic, and highly disciplined, embodying the qualities of a noble. He is serious
+          about his responsibilities and adheres to the Soul Society's rules with unwavering commitment, often placing
+          duty above his personal feelings. While he initially appears cold and distant, Byakuya has a deep sense of
+          honor and cares for those around him, even if he rarely shows it openly. His bond with Rukia, his adopted
+          sister, reveals his more compassionate side, as he often struggles between his duty as a captain and his role
+          as her older brother.<br>Byakuyas calm exterior hides his inner turmoil, and his complex personality makes
+          him a formidable yet honorable warrior with a deep-seated loyalty to his clan and the Soul Society.<br>Byakuya
+          was born into the prestigious Kuchiki Clan, one of the Four Great Noble Houses of the Soul Society. As the
+          heir to the clan, he was trained from a young age in combat and taught to uphold his familys legacy with
+          honor and responsibility. After his parents deaths, he became the head of the Kuchiki Clan and assumed a
+          position as a Soul Reaper captain, enforcing the rules of the Soul Society with unwavering loyalty.<br>
+          Byakuyas life changed when he met Hisana, Rukias biological sister. He broke his clans rules by marrying
+          her, a commoner, which reflects the depth of his feelings. After her death, he adopted Rukia in her honor,
+          though he remained emotionally distant, conflicted between his duty and familial loyalty.<br>
+          Byakuyas noble stature, complex personality, and powerful abilities make him one of Bleach's most beloved
+          characters. He embodies the themes of loyalty, honor, and the struggle between duty and emotion, becoming an
+          emblem of the Soul Societys proud but sometimes inflexible traditions.<br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="left">
+      <img src="getocard.webp" alt="Megumin">
+      <a href="https://character.ai/chat/lpFOkkM_EHLcW7KF9mEEC4FMZjHUWC3D7DZRvPaGfgo" class="button">Click to chat
+        with Geto!</a>
+    </div>
+    <div class="right">
+      <h2>Geto</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> 夏油 傑</p>
+          <p><strong>Romaji Name:</strong> Suguru Geto</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong>Mid 20s</p>
+          <p><strong>Date of Birth:</strong> February 3</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Jujutsu Kaisen </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p>
+          Geto has long black hair, which he often ties back in a bun, and a calm, charismatic presence. His usual
+          attire consists of dark robes with a slightly traditional aesthetic, reinforcing his alignment with
+          traditional jujutsu beliefs. His prominent scar across his forehead is a defining feature, marking a
+          significant point in his storyline.
+
+
+          Geto is highly intelligent, eloquent, and principled, with a strong sense of conviction about the role of
+          sorcerers in society. Originally a compassionate sorcerer who believed in protecting non-sorcerers, he
+          gradually became disillusioned by humanity’s flaws and began to view non-sorcerers as a threat to sorcerers.
+          He is often calm and collected, even in battle, and possesses a magnetic charisma that enables him to gather
+          followers who share his ideals. However, his descent into extremist beliefs also unveils his darker, more
+          ruthless side, as he begins to see eradicating non-sorcerers as the solution to his perceived problems.
+
+
+          Geto is one of the most powerful jujutsu sorcerers of his time, known for his mastery over Curse Manipulation:
+
+          Curse Manipulation: Geto’s innate technique allows him to absorb and control cursed spirits, making him a
+          formidable force in battle, as he can deploy a variety of curses depending on the situation.
+          Skilled Combatant: Geto is highly skilled in hand-to-hand combat and tactics, often using his wits to
+          outmaneuver opponents.
+          Intellectual and Strategic Mind: Geto is not only a powerful sorcerer but also a strategic thinker. His
+          charismatic leadership allows him to gather followers who align with his anti-non-sorcerer ideology.
+          Background
+          Geto was once a student at Tokyo Jujutsu High, where he was close friends with Satoru Gojo. Together, they
+          were viewed as two of the most promising young sorcerers of their time. However, after a traumatic mission
+          involving curses and non-sorcerers, Geto began questioning the value of protecting those who cannot see or
+          understand the sorcery world. This event led to his growing resentment of non-sorcerers and eventual break
+          from the Jujutsu world’s accepted beliefs. He ultimately left the Jujutsu Society, branding himself as a rogue
+          sorcerer.
+
+
+          Geto becomes a significant antagonist in Jujutsu Kaisen 0 and the main series, where he acts as a shadowy
+          figure instigating conflict between sorcerers and cursed spirits. His actions catalyze several major events,
+          and his rivalry with Gojo, whom he once deeply respected, adds emotional depth to his storyline. His ideology,
+          charisma, and tragic downfall as a former hero-turned-antagonist make Geto a complex and enduring figure in
+          the series.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container">
+    <div class="left">
+      <img src="gutscard.jpg" alt="Megumin">
+      <a href="https://character.ai/chat/87IrCVDeDG4tC8H96ur_BSJur0j4G5qOuhHcp9BZFno" class="button">Click to chat
+        with Guts!</a>
+    </div>
+    <div class="right">
+      <h2>Guts (The Black Swordsman)</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong> ガッツ</p>
+          <p><strong>Romaji Name:</strong> Guts</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 20s-30s</p>
+          <p><strong>Date of Birth:</strong> Unknown</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Berserk</p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p>Guts is tall, muscular, and rugged with a heavily scarred body, reflecting his brutal past and constant
+          battles. He has short, spiky black hair, one eye (having lost the other in a traumatic event), and a
+          prosthetic left arm with a built-in cannon. His typical attire is dark and practical, designed for combat, and
+          he carries his massive weapon, the Dragon Slayer, which is a sword as long as he is tall.
+
+
+          Guts is driven, resilient, and battle-hardened, embodying an intense will to survive despite overwhelming
+          odds. His life has been shaped by constant violence, but beneath his tough exterior lies a vulnerable soul
+          marked by suffering, loss, and loneliness. Guts initially has a solitary mindset, believing strength and
+          self-reliance are his only ways to endure the harshness of life. However, his relationships, especially with
+          Casca and the Band of the Hawk, reveal a softer side, showing he is capable of deep loyalty and love. After
+          his betrayal by Griffith, Guts is consumed by revenge but gradually learns to balance his vengeance with his
+          desire to protect those he cares about.
+
+
+          Guts is one of the most skilled fighters in the Berserk universe, displaying exceptional strength, speed, and
+          combat prowess:
+
+          Swordsmanship: Guts wields the Dragon Slayer, a massive sword that most people could barely lift, with ease
+          and skill. His strength and endurance are almost inhuman, allowing him to take on monstrous foes.
+          Berserker Armor: This mystical armor enhances Guts’ strength and senses, allowing him to fight far beyond
+          normal limits but at the cost of severe strain on his body and mind, often driving him to near madness.
+          Survival Skills: Due to his harsh life, Guts is adept at surviving in any situation, from wilderness survival
+          to taking on large groups of enemies alone.
+          Prosthetic Arm with Cannon and Crossbow: Guts’ prosthetic arm has built-in weapons, making it both versatile
+          and deadly in close-range combat.
+          Background
+          Guts’ origins are tragic: he was born from the corpse of his hanged mother and raised by mercenaries. His
+          harsh upbringing under Gambino, a mercenary leader, shaped his early life, filled with pain and survival.
+          After joining the Band of the Hawk, he found camaraderie and even love, particularly with Griffith, the
+          ambitious leader of the group, and Casca, the group's second-in-command. However, Griffith's ultimate betrayal
+          and the Eclipse event shattered Guts' life, as he lost nearly all of his comrades and witnessed horrific acts,
+          including Casca's assault by Griffith. The event marked him as a branded "sacrifice," forever cursed to be
+          pursued by demons.
+
+          Afterward, Guts took on the role of "The Black Swordsman," seeking revenge on Griffith while enduring
+          relentless attacks by supernatural forces. Over time, he gathered new allies, including characters like Puck,
+          Farnese, and Serpico, and began to find a purpose beyond revenge as he sought to protect those he loved,
+          especially Casca.
+
+
+          Guts’ journey is central to Berserk, exploring his struggles with revenge, survival, and the quest for a
+          meaningful life amidst chaos. His story is one of transformation: while he begins as a vengeance-driven
+          warrior, he gradually becomes a protector, balancing his brutal nature with compassion. His battles with the
+          Apostles, Griffith, and his own inner demons are symbolic of the broader themes in Berserk of human resilience
+          and the search for identity and freedom.
+
+          Guts’ complex journey, filled with pain, determination, and fleeting moments of happiness, makes him one of
+          the most iconic and multi-dimensional characters in manga and anime. His story is a harrowing but inspiring
+          tale of struggle and survival, capturing the enduring fight against overwhelming darkness.
+
+
+
+
+
+
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div class="left">
+      <img src="yutacard.webp" alt="Megumin">
+      <a href="https://character.ai/chat/QMloAyjeybe8WThmuiLfU_MNYBOB7WPBLEeikVOVHLw" class="button">Click to chat
+        with Yuta!</a>
+    </div>
+    <div class="right">
+      <h2>Yuta Okkotsu</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong>乙骨 憂太</p>
+          <p><strong>Romaji Name:</strong>Okkotsu Yuta</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 17</p>
+          <p><strong>Date of Birth:</strong> March 7</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Jujutsu Kaisen </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p> Yuta is a tall, slender young man with black hair and a somewhat melancholic expression. His simple
+          attire—typically a white shirt and dark pants—matches his reserved, introspective personality. He often
+          appears quiet and thoughtful, carrying an aura of mystery and subdued sadness, especially due to his
+          connection to Rika Orimoto, a spirit bound to him.
+
+
+          Initially, Yuta is shy, introverted, and emotionally burdened by his past, especially by the curse of his
+          childhood friend Rika. However, over time, he grows in confidence and strength, developing a powerful resolve
+          to protect others and prevent tragedies similar to his own. Yuta is empathetic and compassionate, with a deep
+          sense of responsibility for his powers. Despite the sorrow he carries, he genuinely cares for those around
+          him, especially his friends and allies in the jujutsu world. His growth from a hesitant, haunted young man
+          into a determined and powerful sorcerer is a central part of his journey.
+
+
+          Yuta is one of the most powerful sorcerers in the series, known for his versatile abilities and mastery over
+          cursed energy:
+
+          Rika’s Curse: Initially, Yuta was bound to the powerful spirit of Rika Orimoto, his deceased childhood friend,
+          who was cursed after her untimely death. Rika’s immense power manifests as a guardian spirit that can unleash
+          devastating force in battle, amplifying Yuta's abilities significantly.
+          Exceptional Cursed Energy: Yuta has an unusually high amount of cursed energy, which makes him capable of
+          sustaining and utilizing powerful techniques, including healing others.
+          Copying Techniques: Yuta can mimic the cursed techniques of other sorcerers, a rare ability that makes him
+          extremely versatile and unpredictable.
+          Swordsmanship: Yuta is proficient in close combat and often uses a katana, combining it with his cursed energy
+          for precise and lethal strikes.
+          Background
+          Yuta's story begins with the tragic death of his childhood friend Rika Orimoto, who became a powerful curse
+          attached to him after her death. Terrified and unable to control Rika's power, Yuta initially lives in
+          isolation, struggling to understand and cope with the curse. His journey changes when he is taken under the
+          mentorship of Satoru Gojo, who brings him to Jujutsu High. There, Yuta learns to control his abilities and
+          discovers his natural talent for jujutsu.
+
+          Over time, Yuta grows close to his classmates, including Maki Zenin, Toge Inumaki, and Panda, finding
+          companionship and support. His journey culminates in Jujutsu Kaisen 0, where he confronts Rika’s curse and
+          ultimately learns the truth about her attachment to him, freeing her spirit.
+
+
+          Yuta plays a central role in Jujutsu Kaisen 0 as the protagonist, where his journey revolves around
+          understanding and mastering his cursed abilities while learning the value of his friendships. After this
+          prequel arc, he continues to appear in the main series as one of the strongest young sorcerers, committed to
+          protecting the jujutsu world. His experience with Rika gives him a deep understanding of cursed spirits, and
+          he serves as a valuable ally in battles against powerful enemies.
+
+          Yuta’s story is one of self-discovery, overcoming trauma, and finding purpose. His growth from a sorrowful,
+          isolated boy into a courageous protector exemplifies Jujutsu Kaisen's themes of resilience, connection, and
+          the complexities of living with supernatural abilities. His abilities and compassionate nature make him a
+          beloved character in the series.
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container">
+    <div class="left">
+      <img src="sukunacard.png" alt="Megumin">
+      <a href="https://character.ai/chat/e4YGobLn_1SNmMxoDU0Pt25tYvGjV4Rm-LaoWQdkZts" class="button">Click to chat
+        with Sukuna!</a>
+    </div>
+    <div class="right">
+      <h2>Ryomen Sukuna "The King Of Curses"</h2>
+      <div class="details">
+        <div>
+          <p><strong>Original Name:</strong>両面 宿儺</p>
+          <p><strong>Romaji Name:</strong>Ryomen Sukuna</p>
+
+        </div>
+        <div>
+          <p><strong>Age:</strong> 1000+</p>
+          <p><strong>Date of Birth:</strong> Unknown</p>
+
+        </div>
+      </div>
+
+      <div class="appears-in">
+        <h3>Appears In</h3>
+        <p> Chainsawman: Manga </p>
+
+      </div>
+
+
+
+      <div class="description">
+        <h3>Description</h3>
+        <p>In his current form, Sukuna manifests within Yuji Itadori’s body, and he appears as a tattooed version of
+          Yuji with distinctive marks on his face, symbolizing his cursed nature. In ancient depictions, Sukuna was said
+          to have had two faces and four arms, representing his monstrous and powerful nature. Sukuna’s expressions
+          often carry a sense of arrogance, cruelty, and cunning, reflective of his boundless confidence and disdain for
+          others.
+
+          Sukuna is ruthless, sadistic, and highly confident, seeing both sorcerers and curses as beneath him. He revels
+          in destruction, chaos, and violence, treating human life as inconsequential. Despite his cruel nature, Sukuna
+          is highly intelligent and calculative, often showing an unsettling level of patience and cunning in his plans.
+          His relationship with Yuji, whom he inhabits, is antagonistic yet complex, as he manipulates and tests Yuji
+          while secretly pursuing his own mysterious goals. Sukuna’s pride and ego make him an intimidating figure, as
+          he views most challenges with disdain, showing interest only when faced with particularly strong opponents or
+          unique circumstances.
+
+
+          Sukuna is one of the strongest cursed beings in the series, possessing numerous formidable abilities:
+
+          Vast Cursed Energy: Sukuna has immense reserves of cursed energy, far exceeding most other cursed spirits and
+          sorcerers. His aura alone can induce fear and dread in even experienced sorcerers.
+          Innate Techniques: Sukuna has several cursed techniques, though his full abilities are still unfolding. His
+          known techniques include the Dismantle and Cleave attacks, which allow him to slice through anything in his
+          path with precision.
+          Domain Expansion - Malevolent Shrine: Sukuna’s domain, the Malevolent Shrine, is a powerful and deadly
+          technique that traps his opponent within a vast, shrine-like area where he can precisely target and dismantle
+          anything within range.
+          Regeneration and Healing: Due to his curse energy, Sukuna can heal injuries, even those inflicted on others,
+          making him nearly impossible to kill or permanently harm.
+          Binding Vows: Sukuna forms Binding Vows with Yuji to create deals or limits that benefit him, allowing him to
+          exert control over Yuji’s body for brief periods.
+          Background
+          Sukuna was an ancient sorcerer from over a thousand years ago, renowned as one of the strongest and most
+          feared figures in jujutsu history. Due to his cruelty and strength, he was worshipped and feared as the "King
+          of Curses." After his death, his power was so immense that his body could not be fully destroyed, resulting in
+          his curse being preserved across twenty of his fingers, each one harboring a portion of his power. These
+          fingers became powerful cursed objects scattered throughout the world, feared by sorcerers and sought after by
+          curses.
+
+          Sukuna’s power and reputation have endured through the ages, and he is regarded as a mythical being of
+          unparalleled strength, feared even in the present. When Yuji Itadori consumes one of Sukuna’s fingers, Sukuna
+          is resurrected in part, gaining a second life through Yuji and becoming a threat to both sorcerers and curses
+          alike.
+
+
+          Sukuna’s presence within Yuji introduces a unique internal struggle, as he embodies the darkness and
+          corruption that Yuji must resist. His relationship with Yuji is symbiotic yet volatile, as Sukuna often takes
+          advantage of situations to further his own interests, frequently testing Yuji’s resolve. Sukuna's goals are
+          largely unknown, though he shows a consistent interest in chaos and an enigmatic curiosity toward certain
+          individuals, such as Satoru Gojo and Megumi Fushiguro.
+
+          Sukuna’s character serves as a representation of humanity’s darker desires and the allure of power, bringing
+          complex moral and existential themes into Jujutsu Kaisen. His monstrous strength, cunning nature, and
+          unpredictable goals make him an embodiment of fear and tension in the series, serving as both an antagonist
+          and a catalyst for Yuji’s development.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="sidebar" id="sidebar">
+    <h2>Sidebar</h2>
+    <a href="homepage.html">Homepage</a>
+    <a href="waifu.html">The Waifu List</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="minigamehome.html">simp clicker</a>
+  </div>
+
+
+  <script>
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var content = document.getElementById('content');
+
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px'; /* Hide sidebar */
+        content.classList.remove('expanded');
+      } else {
+        sidebar.style.left = '0px'; /* Show sidebar */
+        content.classList.add('expanded');
+      }
+    }
+  </script>
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+</body>
+
+</html>
